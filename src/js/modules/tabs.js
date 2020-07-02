@@ -2,6 +2,13 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
   const header = document.querySelector(headerSelector);
   const tab = document.querySelectorAll(tabSelector);
   const content = document.querySelectorAll(contentSelector);
+  const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+
+  phoneInputs.forEach(item => {
+    item.addEventListener('input', () => {
+      item.value = item.value.replace(/\D/, '')
+    });
+  });
 
   function hideTabContent() {
     content.forEach(item => {
