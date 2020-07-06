@@ -1,15 +1,9 @@
-const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
+const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = 'block') => {
   const header = document.querySelector(headerSelector);
   const tab = document.querySelectorAll(tabSelector);
   const content = document.querySelectorAll(contentSelector);
-  const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
-
-  phoneInputs.forEach(item => {
-    item.addEventListener('input', () => {
-      item.value = item.value.replace(/\D/, '')
-    });
-  });
-
+  
+  
   function hideTabContent() {
     content.forEach(item => {
       item.style.display = 'none';
@@ -21,7 +15,7 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
   }
 
   function showTabContent(i = 0) {
-    content[i].style.display = 'block';
+    content[i].style.display = display;
     tab[i].classList.add(activeClass);
   }
 

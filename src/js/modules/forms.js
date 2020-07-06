@@ -1,6 +1,11 @@
-const forms = () => {
+import checkNumInputs from './checkNumInputs';
+
+const forms = (state) => {
   const form = document.querySelectorAll('form');
   const inputs = document.querySelectorAll('input');
+
+  //call validation function for checking inputs for digits only
+  checkNumInputs('input[name="user_phone"]');
 
   const message = {
     loading: 'Загрузка',
@@ -33,6 +38,11 @@ const forms = () => {
       item.appendChild(statusMessage);
 
       const formData = new FormData(item);
+      if (item.getAttribute('data-calc') === 'end') {
+        for (let key in state) {
+          formData.append(key, state[key]);
+        }
+      }
 
       postData('assets/server.php', formData)
         .then(res => {
